@@ -1,10 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use App\ProductsManager;
-use App\ApiHelper;
-use App\ApiDataValidator;
-use App\Logger;
+use App\{ ProductsManager, ApiHelper, ApiDataValidator, Logger };
+
 
 
 class ProductsManagerTest extends TestCase
