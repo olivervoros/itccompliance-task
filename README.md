@@ -9,6 +9,7 @@ General:
 
 My PHP version is 7.4, and I used composer, so you will need to issue composer install 
 after you downloaded the source code.
+Also, please rename the dotenv file to .env
 I used few PHP 7 features, such as the parameter type declaration, return type declaration, 
 the null coalescing operator, and the new USE syntax (see the ProductsManagerTest class).
 I used the PSR4 coding standards, and autoloading.

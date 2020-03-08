@@ -1,0 +1,5 @@
+
+API_URL_GET_ALL=https://www.itccompliance.co.uk/recruitment-webservice/api/list
+API_URL_GET_DETAIL=https://www.itccompliance.co.uk/recruitment-webservice/api/info
+
+DEV_MODE='true'
