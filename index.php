@@ -16,10 +16,11 @@ if($_ENV['DEV_MODE']==='true') {
 // CLIENT CODE, in a larger MVC application this code would be in the Controller...
 $apiHelper = new ApiHelper();
 $validate = new ApiDataValidator();
+$logger = new Logger();
 
 $productsManager = new ProductsManager();
 
-$products = $productsManager->getListOfProducts($apiHelper, $validate);
+$products = $productsManager->getListOfProducts($apiHelper, $validate, $logger);
 $productsWithDetail = array();
 foreach($products as $productId => $product) {
     $productsDetail = $productsManager->getProductDetail($apiHelper, $validate, $productId);

@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use App\ProductsManager;
 use App\ApiHelper;
 use App\ApiDataValidator;
+use App\Logger;
 
 
 class ProductsManagerTest extends TestCase
@@ -24,7 +25,10 @@ class ProductsManagerTest extends TestCase
 
         $productsManager = new ProductsManager();
         $validator = new ApiDataValidator();
-        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $validator);
+
+       // DUMMY
+        $dummyLogger = $this->createMock(Logger::class);
+        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $validator, $dummyLogger );
 
         $this->assertIsArray($actualRecordsArray);
     }
@@ -85,7 +89,10 @@ class ProductsManagerTest extends TestCase
 
         $productsManager = new ProductsManager();
         $dataValidator = new ApiDataValidator();
-        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidator);
+
+        // DUMMY
+        $dummyLogger = $this->createMock(Logger::class);
+        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidator, $dummyLogger);
 
         $this->assertCount(5, $actualRecordsArray);
 
@@ -114,8 +121,11 @@ class ProductsManagerTest extends TestCase
 
         $dataValidator = new ApiDataValidator();
 
+        // DUMMY
+        $dummyLogger = $this->createMock(Logger::class);
+
         $productsManager = new ProductsManager();
-        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidator);
+        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidator, $dummyLogger);
         $this->assertIsArray($actualRecordsArray);
 
     }
@@ -146,7 +156,11 @@ class ProductsManagerTest extends TestCase
         $dataValidatorDouble->expects($this->atLeastOnce())->method('validateApiResult');
 
         $productsManager = new ProductsManager();
-        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidatorDouble);
+
+        // DUMMY
+        $dummyLogger = $this->createMock(Logger::class);
+
+        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidatorDouble, $dummyLogger);
         $this->assertIsArray($actualRecordsArray);
 
     }
@@ -182,7 +196,45 @@ class ProductsManagerTest extends TestCase
 
     }
 
-    public function testSpy() {
+    /**
+     * @dataProvider apiReturnDataProviderArrayCountSeven
+     * @param $returnJSON
+     */
+    public function testApiDataValidator_withUsingSPY($returnJSON) {
+        $apiHelperDouble = $this->getMockBuilder(ApiHelper::class)
+            ->setMethodsExcept(['callAPI'])
+            ->getMock();
+
+        // STUB
+        $apiHelperDouble->method('callAPI')->willReturn($returnJSON);
+
+        $dataValidatorDouble = $this->getMockBuilder(ApiDataValidator::class)->getMock();
+
+        // FAKE
+        $dataValidatorDouble->method('validateApiResult')
+            ->will($this->returnCallback(
+                function () {
+                    return array('products' => array("Test"));
+                }
+            ));
+
+        // SPY
+        $dataValidatorDouble->expects($spy = $this->any())->method('validateApiResult');
+
+        $productsManager = new ProductsManager();
+
+        // DUMMY
+        $dummyLogger = $this->createMock(Logger::class);
+
+        $actualRecordsArray = $productsManager->getListOfProducts($apiHelperDouble, $dataValidatorDouble, $dummyLogger);
+        $this->assertIsArray($actualRecordsArray);
+
+        // Verify
+        $invocations = $spy->getInvocations();
+
+        $this->assertGreaterThan(0, $invocations);
+        $firstParameter = $invocations[0]->getParameters()[0];
+        $this->assertIsString($firstParameter);
 
     }
 

@@ -2,7 +2,7 @@
 
 namespace App;
 
-class ApiDataValidator implements DataValidatorInterface
+class ApiDataValidator implements ApiDataValidatorInterface
 {
 
     public function validateApiResult(string $input) {

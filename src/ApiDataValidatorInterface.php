@@ -2,7 +2,7 @@
 
 namespace App;
 
-interface DataValidatorInterface {
+interface ApiDataValidatorInterface {
 
     public function validateApiResult(string $apiReturn);
 }
