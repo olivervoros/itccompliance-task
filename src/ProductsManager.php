@@ -4,7 +4,7 @@ namespace App;
 
 class ProductsManager
 {
-    public function getListOfProducts(ApiHelperInterface $apiHelper, ApiDataValidatorInterface $validate, Logger $logger):array {
+    public function getListOfProducts(ApiHelperInterface $apiHelper, ApiDataValidatorInterface $validate, LoggerInterface $logger):array {
         $result =  $apiHelper->callAPI('GET', $_ENV['API_URL_GET_ALL'], false);
         $logger->log("INFO", $result);
         $validatedApiResultArray = $validate->validateApiResult($result);
