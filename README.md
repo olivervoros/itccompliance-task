@@ -15,7 +15,7 @@ Some pointers:
 - Follow a coding standard, e.g. PSR-2 (or other, please specify)       
 - Separate backend and frontend code       
 - Demonstrate unit testing knowledge (or give it your best shot)      
-      
+
 Webservice Documentation       
 
 This is brief documentation for the recruitment webservice. Anything not listed here you are expected to diagnose or reverse engineer yourself.
