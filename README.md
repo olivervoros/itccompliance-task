@@ -6,14 +6,14 @@ to PHP and object oriented programming.
 You should submit code that you would expect to pass code review.
 How much time you spend on this is up to you - but there’s no benefit in rushing.
 Some pointers:    
-● Object oriented code    
-● SOLID    
-● Composition over inheritance    
-● PHP7 (we use PHP7.2)    
-● No singletons    
-● Follow a coding standard, e.g. PSR-2 (or other, please specify)    
-● Separate backend and frontend code    
-● Demonstrate unit testing knowledge (or give it your best shot)    
+- Object oriented code       
+- SOLID       
+- Composition over inheritance        
+- PHP7 (we use PHP7.2)       
+- No singletons       
+- Follow a coding standard, e.g. PSR-2 (or other, please specify)       
+- Separate backend and frontend code       
+- Demonstrate unit testing knowledge (or give it your best shot)       
 Webservice Documentation 
 This is brief documentation for the recruitment webservice. Anything not listed here you are expected to diagnose or reverse engineer yourself.
 
