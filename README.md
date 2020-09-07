@@ -1,9 +1,40 @@
 ITC Compliance Task
 
-Hi Guys,
+Description of the test:
+This coding exercise is an opportunity for you to showcase your abilities, specifically relating
+to PHP and object oriented programming.
+You should submit code that you would expect to pass code review.
+How much time you spend on this is up to you - but there’s no benefit in rushing.
+Some pointers:
+● Object oriented code
+● SOLID
+● Composition over inheritance
+● PHP7 (we use PHP7.2)
+● No singletons
+● Follow a coding standard, e.g. PSR-2 (or other, please specify)
+● Separate backend and frontend code
+● Demonstrate unit testing knowledge (or give it your best shot)
+Webservice Documentation
+This is brief documentation for the recruitment webservice. Anything not listed here you are expected to diagnose or reverse engineer yourself.
 
-First of all then you very much for the opportunity to complete the task.
-I will share with you some information about the project below:
+Your Aim
+Using the webservice list the products that are available.
+Handle any errors
+For each insurance product returned, get more infomration and display
+Basics
+The webservice can be accessed at https://www.itccompliance.co.uk/recruitment-webservice/api/ and provides 2 methods list and info. Append the method names to the URL to use them.
+
+List
+Returns a list of insurance products as a json array in the form {"products": {"id": "name", "id": "name"}}
+
+Info
+Gets information about a specific insurance product as a json array in the form {"id": {"name": "...", "description": "...", "type": "...", "suppliers": ["name", "name"]}}. Add the product ID as a query string like ?id=...
+
+Known Issues
+Unfortunately this data is retrieved from an unreliable source and the webservice may return an error. When this occurs, simply re-try the request until it succeeds.
+Data is provided directly from a third-party and should be sanitised.
+
+My implementation:
 
 General:
 
